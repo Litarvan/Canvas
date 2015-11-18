@@ -1,2 +1,2 @@
-# distrib
-Paladin framework basic distribution (project base template)
+# Canvas
+The Canvas maven repository manager
