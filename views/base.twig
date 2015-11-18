@@ -1,0 +1,105 @@
+<!--
+  Copyright 2015 Adrien Navratil
+
+  This file is part of Canvas.
+
+  Canvas is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Canvas is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+{#
+ # Canvas base template
+ #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Canvas - {% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ res('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- The Canvas Icon -->
+    <link rel="icon" href="{{ res('images/icon.png') }}" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="{{ res('js/html5shiv-3.7.0.js') }}"></script>
+        <script src="{{ res('js/respond-1.4.2.min.js') }}"></script>
+    <![endif]-->
+
+    <!-- Canvas global CSS -->
+    <link href="{{ res('css/global.css') }}" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div id="header">
+        <img src="{{ res('images/logo.png') }}" id="logo" />
+
+        <nav>
+            <ul>
+                <li><a href="{{ root() }}">Home</a></li>
+                <li><a href="{{ root() ~ 'tree/' }}">Tree</a></li>
+                <li><a href="{{ root() ~ 'search' }}">Search</a></li>
+                <li><a href="{{ root() ~ 'auth/register' }}">Register</a></li>
+                <li><a href="{{ root() ~ 'auth/login' }}">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="path">
+        <p>
+            {#
+             # Generating the path =) If path is ["fr", "theshark34", "mygroup"] it will looks like :
+             # Canvas > fr > theshark34 > mygroup
+             #
+             # Canvas go on /
+             # fr go on /tree/fr/
+             # theshark34 go on /tree/fr.theshark34/
+             # mygroup go on /tree/fr.theshark34.mygroup/
+             #}
+
+            <a href="{{ root() }}">Canvas</a>
+
+            {% for p in path %}
+                {% set totalpath = totalpath ~ (totalpath == "" ? "" : ".") ~ p %}
+                > <a href="{{ root() ~ 'tree/' ~ totalpath }}">{{ p }}</a>
+            {% endfor %}
+        </p>
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        Canvas - Open-Source Maven repository manager - <a href="https://github.com/TheShark34/Canvas">Sources on Github</a><br />
+        Copyright (c) Adrien Navratil 2015 - Under GPL-3.0 License. See LICENSE file.<br />
+        Made with love by TheShark34 (Adrien N.)<br />
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ resPath ~ 'js/jquery-1.11.3.min.js' }}"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ resPath ~ 'js/bootstrap.min.js' }}"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

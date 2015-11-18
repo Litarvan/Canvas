@@ -1,0 +1,92 @@
+/*
+ * Copyright 2015 Adrien Navratil
+ *
+ * This file is part of Canvas.
+ *
+ * Canvas is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Canvas is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#header
+{
+    width: 100%;
+    height: 200px;
+    background: rgb(50, 50, 50);
+    display: inline-block;
+}
+
+#path
+{
+    width: 100%;
+    height: 25px;
+    background: rgb(85, 85, 85);
+}
+
+#path p
+{
+    font-size: 17px;
+    margin-left: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+}
+
+#path a, a:hover
+{
+    color: white;
+}
+
+#content
+{
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    width: calc(100% - 20px);
+}
+
+#logo
+{
+    width: 650px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+nav
+{
+    display: inline-block;
+    color: white;
+    float: right;
+    font-size: 20px;
+    margin-top: 90px;
+    margin-right: 50px;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav a, a:hover
+{
+    color: white;
+}
+
+footer
+{
+    width: 100%;
+    background: rgb(50, 50, 50);
+    text-align: center;
+    padding: 10px;
+    color: white;
+}

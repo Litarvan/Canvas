@@ -1,0 +1,25 @@
+{
+    "minimum-stability": "stable",
+    "name": "theshark34/canvas",
+    "description": "The Canvas Maven repository server",
+    "keywords": ["canvas", "paladin", "theshark34", "maven", "repository", "server"],
+    "homepage": "http://github.com/TheShark34/Canvas",
+    "license": "LGPL-3",
+    "authors": [
+        {
+            "name": "TheShark34",
+            "email": "adrien1975@live.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+        	"Canvas\\": "src/"
+        }
+    },
+    "require": {
+        "paladin/paladin": ">=1.0.0",
+        "paladin/std-library": ">=1.0.0",
+        "paladin/routing": ">=1.0.0",
+        "paladin/paladin-twig": ">=1.0.0"
+    }
+}
