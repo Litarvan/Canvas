@@ -31,7 +31,7 @@ class PackageController
         $path = explode(".", $groupId);
         $path[sizeof($path)] = "/" . $artifactId;
 
-        if(!file_exists($pomFile))
+        if (!file_exists($pomFile))
             return Paladin::view("error.twig", array("title" => "Malformed package !", "message" => "Can't find the pom file for this package !(Searched at $pomFile)", "path" => $path));
 
         $pom = simplexml_load_file($pomFile);

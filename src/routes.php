@@ -15,6 +15,9 @@ $this->get("/", function() {
     return \Paladin\Paladin::view("home.twig");
 });
 
+$this->get("/search", "SearchController@display");
+$this->post("/search", "SearchController@search");
+
 $this->get("/tree", "TreeController@group");
 $this->get("/tree/:groupId", "TreeController@group");
 $this->get("/tree/:groupId/:artifactId", "TreeController@artifact");
