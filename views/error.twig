@@ -17,21 +17,18 @@
  # along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  #}
 
-{#
- # Home page
- #}
-
-{% set path=[] %}
-
 {% extends 'base.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Error{% endblock %}
 
 {% block head %}
-    <link href="{{ res('css/home.css') }}" rel="stylesheet">
-    <link href="{{ res('css/morris-0.5.1.min.css') }}" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="{{ res('css/error.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+    <h1 id="title">\( o.o)/ <br /><br /> {{ title }}</h1>
+
+    <p id="message">
+        {{ message }}
+    </p>
 {% endblock %}

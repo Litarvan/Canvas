@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('fonts/glyphicons-halflings-regular.eot');
@@ -124,7 +125,7 @@ nav li
     margin-left: 20px;
 }
 
-nav a, a:hover
+nav a, nav a:hover
 {
     color: white;
 }

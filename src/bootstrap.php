@@ -67,6 +67,13 @@ try {
 
 			return;
 		}
+		else
+		{
+			$response = Paladin::view("error.twig", array("title" => "Page not found", "message" => "Can't find the given page"));
+			$response->send();
+
+			return;
+		}
 	}
 
 	PaladinErrorHandler::displayErrorPage("Exception caught ! " . get_class($e), $e->getMessage(), function_exists("debug_backtrace") ? PaladinErrorHandler::generateBacktrace() : "");

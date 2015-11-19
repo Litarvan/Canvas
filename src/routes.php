@@ -9,12 +9,17 @@
  * See the doc for more !
  */
 
+use Paladin\Paladin;
+
 $this->get("/", function() {
     return \Paladin\Paladin::view("home.twig");
 });
 
 $this->get("/tree/:groupId", "TreeController@group");
 $this->get("/tree/:groupId/:artifactId", "TreeController@artifact");
-$this->get("/package/:groupId/:artifactId/:version", "PackageController@show");
+$this->get("/package/:groupId/:artifactId/:version", function($groupId, $artifactId, $version)
+{
+    return Paladin::view("package.twig", array("group" => $groupId, "artifact" => $artifactId, "version" => $version));
+});
 
 ?>

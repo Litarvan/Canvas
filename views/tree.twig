@@ -17,21 +17,32 @@
  # along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  #}
 
-{#
- # Home page
- #}
-
-{% set path=[] %}
-
 {% extends 'base.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Tree{% endblock %}
 
 {% block head %}
-    <link href="{{ res('css/home.css') }}" rel="stylesheet">
-    <link href="{{ res('css/morris-0.5.1.min.css') }}" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="{{ res('css/tree.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+    {% if type == "group" %}
+        <div class="files-group">
+            {% for f in groups %}
+                <a href="{{ group ~ '.' ~ f }}">{{ f }}</a><br />
+            {% endfor %}
+        </div>
+    {% elseif type == "artifact" %}
+        <div class="files-group">
+            {% for f in artifacts %}
+                <a href="{{ group ~ '/' ~ f }}">{{ f }}</a><br />
+            {% endfor %}
+        </div>
+    {% elseif type == "version" %}
+        <div class="files-group">
+            {% for f in versions %}
+                <a href="../../package/{{ group ~ '/' ~ artifact ~ '/' ~ f ~ '/' }}">{{ f }}</a><br />
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

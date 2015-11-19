@@ -85,7 +85,7 @@
             <a href="{{ root() }}">Canvas</a>
 
             {% for p in path %}
-                {% set totalpath = totalpath ~ (totalpath == "" ? "" : ".") ~ p %}
+                {% set totalpath = totalpath ~ (totalpath == "" ? "" : (p starts with '/' ? "" : ".")) ~ p %}
                 > <a href="{{ root() ~ 'tree/' ~ totalpath }}">{{ p }}</a>
             {% endfor %}
         </p>
