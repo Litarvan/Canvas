@@ -26,22 +26,33 @@
 {% endblock %}
 
 {% block content %}
+    <h1>{{ group }}</h1>
+
     {% if type == "group" %}
         <div class="files-group">
             {% for f in groups %}
-                <a href="{{ (group == "" ? "" : group ~ '.') ~ f }}">{{ f }}</a><br />
+                <div class="entry" onclick="window.location='{{ (group == "" ? "" : group ~ '.') ~ f }}'">
+                    <h3>{{ f }}</h3>
+                    <p>Group : {{ group }} > {{ f }}</p><br />
+                </div>
             {% endfor %}
         </div>
     {% elseif type == "artifact" %}
         <div class="files-group">
             {% for f in artifacts %}
-                <a href="{{ group ~ '/' ~ f }}">{{ f }}</a><br />
+                <div class="entry" onclick="window.location='{{ group ~ '/' ~ f }}'">
+                    <h3>{{ f }}</h3>
+                    <p>Artifact : {{ group }} >> {{ f }}</p><br />
+                </div>
             {% endfor %}
         </div>
     {% elseif type == "version" %}
         <div class="files-group">
             {% for f in versions %}
-                <a href="../../package/{{ group ~ '/' ~ artifact ~ '/' ~ f ~ '/' }}">{{ f }}</a><br />
+                <div class="entry" onclick="window.location='../../package/{{ group ~ '/' ~ artifact ~ '/' ~ f ~ '/' }}'">
+                    <h3>{{ f }}</h3>
+                    <p>Version : {{ group }} >> {{ artifact }} >>> {{ f }}</p><br />
+                </div>
             {% endfor %}
         </div>
     {% endif %}

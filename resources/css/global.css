@@ -146,3 +146,17 @@ footer
 div.pq-grid .glyphicon {
     font-family: "Glyphicons Halflings";
 }
+
+.entry
+{
+    width: calc(100% - 50px);
+    background: #eee;
+    height: 90px;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.entry:hover
+{
+    background: #ddd;
+}
