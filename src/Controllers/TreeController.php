@@ -17,7 +17,7 @@ use Paladin\Std\StringsUtil;
 class TreeController
 {
 
-    public function group($groupId)
+    public function group($groupId = "")
     {
         $folder = "files/" . str_replace(".", "/", $groupId);
         $path = explode(".", $groupId);

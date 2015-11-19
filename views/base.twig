@@ -62,7 +62,7 @@
         <nav>
             <ul>
                 <li><a href="{{ root() }}">Home</a></li>
-                <li><a href="{{ root() ~ 'tree/' }}">Tree</a></li>
+                <li><a href="{{ root() ~ 'tree' }}">Tree</a></li>
                 <li><a href="{{ root() ~ 'search' }}">Search</a></li>
                 <li><a href="{{ root() ~ 'auth/register' }}">Register</a></li>
                 <li><a href="{{ root() ~ 'auth/login' }}">Login</a></li>
@@ -76,10 +76,10 @@
              # Generating the path =) If path is ["fr", "theshark34", "mygroup"] it will looks like :
              # Canvas > fr > theshark34 > mygroup
              #
-             # Canvas go on /
-             # fr go on /tree/fr/
+             # Canvas     go on /
+             # fr         go on /tree/fr/
              # theshark34 go on /tree/fr.theshark34/
-             # mygroup go on /tree/fr.theshark34.mygroup/
+             # mygroup    go on /tree/fr.theshark34.mygroup/
              #}
 
             <a href="{{ root() }}">Canvas</a>

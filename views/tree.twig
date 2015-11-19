@@ -29,7 +29,7 @@
     {% if type == "group" %}
         <div class="files-group">
             {% for f in groups %}
-                <a href="{{ group ~ '.' ~ f }}">{{ f }}</a><br />
+                <a href="{{ (group == "" ? "" : group ~ '.') ~ f }}">{{ f }}</a><br />
             {% endfor %}
         </div>
     {% elseif type == "artifact" %}

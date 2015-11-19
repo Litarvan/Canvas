@@ -26,5 +26,17 @@
 {% endblock %}
 
 {% block content %}
-    
+    <h1 id="name">{{ name }} - {{ version }}</h1>
+    <h4>{{ group }} > {{ artifact }} > {{ version }}</h4>
+
+    <br />
+
+    <p id="infos">
+        {% if url %}
+            URL : {{ url }}
+        {% endif %}
+    </p>
+
+    <button class="btn btn-success" onclick="location.href='../../../../files/{{ group|replace({'.': '/'}) }}/{{ artifact }}/{{ version }}/{{ artifact }}-{{ version }}.jar'">Download</button><br /><br />
+    <button class="btn btn-success" onclick="location.href='../../../../files/{{ group|replace({'.': '/'}) }}/{{ artifact }}/{{ version }}/{{ artifact }}-{{ version }}.pom'">Pom</button>
 {% endblock %}
