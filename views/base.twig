@@ -38,7 +38,7 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="{{ res('js/html5shiv-3.7.0.js') }}"></script>
+        <script src="{{ res('js/html5shiv-3.7.0.min.js') }}"></script>
         <script src="{{ res('js/respond-1.4.2.min.js') }}"></script>
     <![endif]-->
 
@@ -51,6 +51,13 @@
 <body>
     <div id="header">
         <img src="{{ res('images/logo.png') }}" id="logo" />
+
+        <div id="search">
+            <form action="search" method="post">
+                <input type="text" placeholder="Search for a group, artifact, user..." name="search-bar" id="bar" />
+                <button id="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </form>
+        </div>
 
         <nav>
             <ul>
@@ -95,10 +102,10 @@
     </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ resPath ~ 'js/jquery-1.11.3.min.js' }}"></script>
+    <script src="{{ res('js/jquery-1.11.3.min.js') }}"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ resPath ~ 'js/bootstrap.min.js' }}"></script>
+    <script src="{{ res('js/bootstrap.min.js') }}"></script>
 
     {% block scripts %}{% endblock %}
 </body>
