@@ -16,21 +16,34 @@ class SearchController
 
     public function search()
     {
-        if (!isset($_POST["search"]))
-            return Paladin::view("error.twig", array("title" => "Missing argument !", "message" => "We can't find your search content !"));
+        if (!isset($_POST["search"]) || !isset($_POST["search-type"]))
+            return Paladin::view("error.twig", array("title" => "Missing argument !", "message" => "Some arguments are missing !"));
 
+        $searchType = $_POST["search-type"];
         $search = $_POST["search"];
         $files = self::listFiles("files");
         $groupResults = array();
         $artifactsResults = array();
 
-        foreach ($files["groups"] as $g)
-            if (strpos($g, $search) !== false || strpos(str_replace(".", " ", $g), $search) !== false)
-                $groupResults[sizeof($groupResults)] = $g;
+        if($searchType == "groupsOnly")
+            $groupsOnly = true;
+        else
+            $groupsOnly = false;
 
-        foreach ($files["artifacts"] as $a)
-            if (strpos($a, $search) !== false)
-                $artifactsResults[sizeof($artifactsResults)] = $a;
+        if($searchType == "artifactsOnly")
+            $artifactsOnly = true;
+        else
+            $artifactsOnly = false;
+
+        if(!$artifactsOnly)
+            foreach ($files["groups"] as $g)
+                if (strpos($g, $search) !== false || strpos(str_replace(".", " ", $g), $search) !== false)
+                    $groupResults[sizeof($groupResults)] = $g;
+
+        if(!$groupsOnly)
+            foreach ($files["artifacts"] as $a)
+                if (strpos($a, $search) !== false)
+                    $artifactsResults[sizeof($artifactsResults)] = $a;
 
         return Paladin::view("search-result.twig", array("groups" => $groupResults, "artifacts" => $artifactsResults));
     }
