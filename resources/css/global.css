@@ -55,7 +55,6 @@
 #content
 {
     width: 100%;
-    padding: 10px;
 }
 
 #logo
@@ -149,7 +148,7 @@ div.pq-grid .glyphicon {
 
 .entry
 {
-    width: calc(100% - 50px);
+    width: 100%;
     background: #eee;
     height: 90px;
     padding-left: 10px;
@@ -159,4 +158,33 @@ div.pq-grid .glyphicon {
 .entry:hover
 {
     background: #ddd;
+}
+
+.icon
+{
+    height: 100px;
+    padding: 5px;
+    display: inline-block;
+    margin-top: -50px;
+}
+
+#infos
+{
+    display: inline-block;
+}
+
+.entry-content
+{
+    display: inline-block;
+}
+
+.entry .icon
+{
+    height: 75px;
+    margin-top: -100px;
+}
+
+.no-icon
+{
+    margin-left: 80px;
 }

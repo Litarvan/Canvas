@@ -19,10 +19,14 @@
 
 .files-group
 {
-    padding: 50px;
 }
 
 .files-group a:hover
 {
     color: black;
+}
+
+#infos
+{
+    padding: 25px;
 }

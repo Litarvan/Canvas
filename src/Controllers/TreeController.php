@@ -51,12 +51,56 @@ class TreeController
         $finalFiles["groups"] = array();
 
         foreach ($files as $file)
-            if (self::is_artifact($folder . "/" . $file))
-                $finalFiles["artifacts"][sizeof($finalFiles["artifacts"])] = $file;
-            else
-                $finalFiles["groups"][sizeof($finalFiles["groups"])] = $file;
+            if (!is_dir($folder . "/" . $file))
+                continue;
+            else if (self::is_artifact($folder . "/" . $file))
+            {
+                $json = $folder . "/" . $file . "/infos.json";
+                $file = array("file" => $file, "name" => $file, "desc" => "Artifact : " . $groupId . " >> " . $file);
 
-        return Paladin::view("tree.twig", array("groups" => $finalFiles["groups"], "artifacts" => $finalFiles["artifacts"], "path" => $path, "group" => $groupId, "type" => sizeof($finalFiles["artifacts"]) > 0 ? "artifact" : "group"));
+                if (file_exists($json))
+                {
+                    $json = json_decode(file_get_contents($json));
+                    $json = (array) $json;
+
+                    $file["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
+                    $file["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
+                    $file["icon"] = file_exists($folder . "/" . $file["file"] . "/icon.png") ? $folder . "/" . $file["file"] . "/icon.png" : "";
+                }
+                $finalFiles["artifacts"][sizeof($finalFiles["artifacts"])] = $file;
+            }
+            else
+            {
+                $json = $folder . "/" . $file . "/infos.json";
+                $file = array("file" => $file, "name" => $file, "desc" => "Group : " . $groupId . ($groupId != "" ? "." : "") . $file);
+
+                if (file_exists($json))
+                {
+                    $json = json_decode(file_get_contents($json));
+                    $json = (array) $json;
+
+                    $file["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
+                    $file["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
+                    $file["icon"] = file_exists($folder . "/" . $file["file"] . "/icon.png") ? $folder . "/" . $file["file"] . "/icon.png" : "";
+                }
+                $finalFiles["groups"][sizeof($finalFiles["groups"])] = $file;
+            }
+
+        $explodedGroup = explode(".", $groupId);
+        $group = array("name" => $explodedGroup[sizeof($explodedGroup) - 1], "desc" => $groupId, "id" => $groupId);
+
+        $json = $folder . "/infos.json";
+        if(file_exists($json))
+        {
+            $json = json_decode(file_get_contents($json));
+            $json = (array) $json;
+
+            $group["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
+            $group["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
+            $group["icon"] = file_exists($folder . "/icon.png") ? $folder . "/icon.png" : "";
+        }
+
+        return Paladin::view("tree.twig", array("groups" => $finalFiles["groups"], "artifacts" => $finalFiles["artifacts"], "path" => $path, "group" => $group, "type" => sizeof($finalFiles["artifacts"]) > 0 ? "artifact" : "group"));
     }
 
     public static function is_artifact($file)
@@ -86,7 +130,26 @@ class TreeController
         $files = scandir($folder);
         $files = array_slice($files, 2);
 
-        return Paladin::view("tree.twig", array("versions" => $files, "path" => $path, "group" => $groupId, "artifact" => $artifactId, "type" => "version"));
+        $versions = array();
+
+        foreach ($files as $file)
+        {
+            $json = $folder . "/" . $file . "/infos.json";
+            $file = array("file" => $file, "name" => $file, "desc" => "Artifact : " . $groupId . " >> " . $artifactId . " >>> " . $file);
+
+            if (file_exists($json))
+            {
+                $json = json_decode(file_get_contents($json));
+                $json = (array) $json;
+
+                $file["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
+                $file["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
+                $file["icon"] = file_exists($folder . "/" . $file["file"] . "icon.png") ? $folder . "/" . $file["file"] . "icon.png" : "";
+            }
+            $versions[sizeof($versions)] = $file;
+        }
+
+        return Paladin::view("tree.twig", array("versions" => $versions, "path" => $path, "group" => $groupId, "artifact" => $artifactId, "type" => "version"));
     }
 
 }
