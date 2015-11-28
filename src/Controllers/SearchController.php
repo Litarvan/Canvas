@@ -54,7 +54,9 @@ class SearchController
         $files = array_slice($files, 2);
 
         foreach ($files as $file)
-            if (TreeController::is_artifact($folder . "/" . $file))
+            if(!is_dir($folder . "/" . $file))
+                continue;
+            else if (TreeController::is_artifact($folder . "/" . $file))
                 $finalFiles["artifacts"][sizeof($finalFiles["artifacts"])] = substr(str_replace("/", ".", $folder) . "/" . $file, 6);
             else
             {

@@ -26,43 +26,24 @@
 {% endblock %}
 
 {% block content %}
-    {% if type == "group" %}
+    {% if type == "tree" %}
         {% if group.icon != "" %}
             <img class="icon" src="{{ root() ~ group.icon }}" />
         {% endif %}
 
         <div id="infos">
-            <h1>{{ group.name }}</h1>
-            <h4>{{ group.desc }}</h4>
+            {% if (group.name == "") and (group.desc == "") %}
+                <h1>Home</h1>
+                <h4>Canvas repository home</h4>
+            {% else %}
+                <h1>{{ group.name }}</h1>
+                <h4>{{ group.desc }}</h4>
+            {% endif %}
         </div>
 
         <div class="files-group">
-            {% for f in groups %}
-                <div class="entry" onclick="window.location='{{ (group.id == "" ? "" : group.id ~ '.') ~ f.file }}'">
-                    {% if f.icon != "" %}
-                        <img class="icon" src="{{ root() ~ f.icon }}" />
-                    {% endif %}
-
-                    <div class="entry-content {% if f.icon == "" %} no-icon {% endif %}">
-                        <h3>{{ f.name }}</h3>
-                        <p>{{ f.desc }}</p><br />
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% elseif type == "artifact" %}
-        {% if group.icon != "" %}
-            <img class="icon" src="{{ root() ~ group.icon }}" />
-        {% endif %}
-
-        <div id="infos">
-            <h1>{{ group.name }}</h1>
-            <h4>{{ group.desc }}</h4>
-        </div>
-
-        <div class="files-group">
-            {% for f in artifacts %}
-                <div class="entry" onclick="window.location='{{ group.id ~ '/' ~ f.file }}'">
+            {% for f in files %}
+                <div class="entry" onclick="window.location='{{ f.type == "group" ? ((group.id == "" ? "" : group.id ~ '.') ~ f.file) : group.id ~ '/' ~ f.file }}'">
                     {% if f.icon != "" %}
                         <img class="icon" src="{{ root() ~ f.icon }}" />
                     {% endif %}
@@ -75,10 +56,19 @@
             {% endfor %}
         </div>
     {% elseif type == "version" %}
+        {% if infos.icon != "" %}
+            <img class="icon" src="{{ root() ~ infos.icon }}" />
+        {% endif %}
+
+        <div id="infos">
+            <h1>{{ infos.name }}</h1>
+            <h4>{{ infos.desc }}</h4>
+        </div>
+
         <div class="files-group">
             {% for f in versions %}
-                <div class="entry" onclick="window.location='../../package/{{ group ~ '/' ~ artifact ~ '/' ~ f.file ~ '/' }}'">
-                    <h3>{{ f.name }}</h3>
+                <div class="entry" onclick="window.location='../../package/{{ group ~ '/' ~ artifact ~ '/' ~ f.version ~ '/' }}'">
+                    <h3>{{ f.version }}</h3>
                     <p>{{ f.desc }}</p><br />
                 </div>
             {% endfor %}

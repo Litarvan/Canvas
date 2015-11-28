@@ -32,13 +32,27 @@ class PackageController
         $path[sizeof($path)] = "/" . $artifactId;
 
         if (!file_exists($pomFile))
-            return Paladin::view("error.twig", array("title" => "Malformed package !", "message" => "Can't find the pom file for this package !(Searched at $pomFile)", "path" => $path));
+            return Paladin::view("error.twig", array("title" => "Malformed package !", "message" => "Can't find the pom file for this package ! (Searched at $pomFile)", "path" => $path));
 
         $pom = simplexml_load_file($pomFile);
 
         $name = isset($pom->name) ? $pom->name : $artifactId;
+        $desc = "";
+        $icon = "";
         $url = isset($pom->url) ? $pom->url : false;
 
-        return Paladin::view("package.twig", array("name" => $name, "url" => $url, "group" => $groupId, "artifact" => $artifactId, "version" => $version, "path" => $path));
+        $json = "files/" . str_replace(".", "/", $groupId) . "/$artifactId/infos.json";
+
+        if (file_exists($json))
+        {
+            $json = json_decode(file_get_contents($json));
+            $json = (array) $json;
+
+            $name = isset($json["name"]) ? $json["name"] : $name;
+            $desc = isset($json["desc"]) ? $json["desc"] : $desc;
+            $icon = file_exists("files/" . str_replace(".", "/", $groupId) . "/$artifactId/icon.png") ? "files/" . str_replace(".", "/", $groupId) . "/$artifactId/icon.png" : "";
+        }
+
+        return Paladin::view("package.twig", array("name" => $name, "url" => $url, "group" => $groupId, "artifact" => $artifactId, "version" => $version, "path" => $path, "desc" => $desc, "icon" => $icon));
     }
 }

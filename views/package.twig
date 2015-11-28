@@ -26,8 +26,20 @@
 {% endblock %}
 
 {% block content %}
-    <h1 id="name">{{ name }} - {{ version }}</h1>
-    <h4>{{ group }} > {{ artifact }} > {{ version }}</h4>
+    <div id="base">
+        <h1 id="name">{{ name }} - {{ version }}</h1>
+        <h4>{{ group }} / {{ artifact }} >> {{ version }}</h4>
+
+        {% if icon != "" %}
+            <div id="p-icon">
+                <img src="{{ root() ~ icon }}" />
+            </div>
+        {% endif %}
+
+        <div id="icon-div">
+
+        </div>
+    </div>
 
     <br />
 
