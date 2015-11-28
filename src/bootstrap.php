@@ -29,54 +29,48 @@ use Paladin\ErrorHandling\PaladinErrorHandler;
 // Do your things here !
 
 // Starting Paladin !
-try {
-	Paladin::start(array(
-	    "configFolder"      => "config",
-	    "sourceFolder"      => "src",
-	    "controllerFolder"  => "Controllers",
-	    "middlewareFolder"  => "Middlewares",
-	    "modelFolder"       => "Models",
-	    "resourceFolder"    => "resources",
-	    "viewFolder"        => "views",
-	    "mainEngine"		=> "twig",
-	), function()
-	{
-		PaladinErrorHandler::setErrorPageLocation("views/ErrorPage.html");
+try
+{
+    Paladin::start(array("configFolder" => "config", "sourceFolder" => "src", "controllerFolder" => "Controllers", "middlewareFolder" => "Middlewares", "modelFolder" => "Models", "resourceFolder" => "resources", "viewFolder" => "views", "mainEngine" => "twig",), function ()
+    {
+        PaladinErrorHandler::setErrorPageLocation("views/ErrorPage.html");
 
-		if(Paladin::getConfigLoader()->getConfigs()["app"]["debug"])
-		{
-			$engine = Paladin::getViewingEngineManager()->getSelectedEngine();
+        if (Paladin::getConfigLoader()->getConfigs()["app"]["debug"])
+        {
+            $engine = Paladin::getViewingEngineManager()->getSelectedEngine();
 
-			if(get_class($engine) == "Paladin\Viewing\TwigViewingEngine")
-			{
-				$engine->getTwig()->enableAutoReload();
-				$engine->getTwig()->enableDebug();
-			}
-		}
-	});
-} catch (\Exception $e) {
-	if($e instanceof \Paladin\Routing\RouteNotFoundException)
-	{
-		// If the file is in the repo, downloading it ;)
-		$file = "files/" . trim(str_replace(dirname($_SERVER['SCRIPT_NAME']), "", $_SERVER['REQUEST_URI']), "/");
+            if (get_class($engine) == "Paladin\Viewing\TwigViewingEngine")
+            {
+                $engine->getTwig()->enableAutoReload();
+                $engine->getTwig()->enableDebug();
+            }
+        }
+    });
+}
+catch (\Exception $e)
+{
+    if ($e instanceof \Paladin\Routing\RouteNotFoundException)
+    {
+        // If the file is in the repo, downloading it ;)
+        $file = "files/" . trim(str_replace(dirname($_SERVER['SCRIPT_NAME']), "", $_SERVER['REQUEST_URI']), "/");
 
-		if(file_exists($file))
-		{
-			$response = new \Paladin\Http\RedirectResponse(Paladin::getRootPath(true) . $file);
-			$response->send();
+        if (file_exists($file))
+        {
+            $response = new \Paladin\Http\RedirectResponse(Paladin::getRootPath(true) . $file);
+            $response->send();
 
-			return;
-		}
-		else
-		{
-			$response = Paladin::view("error.twig", array("title" => "Page not found", "message" => "Can't find the given page"));
-			$response->send();
+            return;
+        }
+        else
+        {
+            $response = Paladin::view("error.twig", array("title" => "Page not found", "message" => "Can't find the given page"));
+            $response->send();
 
-			return;
-		}
-	}
+            return;
+        }
+    }
 
-	PaladinErrorHandler::displayErrorPage("Exception caught ! " . get_class($e), $e->getMessage(), function_exists("debug_backtrace") ? PaladinErrorHandler::generateBacktrace() : "");
+    PaladinErrorHandler::displayErrorPage("Exception caught ! " . get_class($e), $e->getMessage(), function_exists("debug_backtrace") ? PaladinErrorHandler::generateBacktrace() : "");
 }
 
 // Dead code after this point

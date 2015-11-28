@@ -46,7 +46,7 @@ class PackageController
         if (file_exists($json))
         {
             $json = json_decode(file_get_contents($json));
-            $json = (array) $json;
+            $json = (array)$json;
 
             $name = isset($json["name"]) ? $json["name"] : $name;
             $desc = isset($json["desc"]) ? $json["desc"] : $desc;

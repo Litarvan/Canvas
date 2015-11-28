@@ -11,7 +11,8 @@
 
 use Paladin\Paladin;
 
-$this->get("/", function() {
+$this->get("/", function ()
+{
     return \Paladin\Paladin::view("home.twig");
 });
 

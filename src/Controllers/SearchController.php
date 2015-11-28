@@ -1,11 +1,38 @@
 <?php
 
+/*
+ * Copyright 2015 Adrien Navratil
+ *
+ * This file is part of Canvas.
+ *
+ * Canvas is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Canvas is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 namespace Canvas\Controllers;
 
-use Paladin\Http\Response;
 use Paladin\Paladin;
-use Paladin\Std\StringsUtil;
+use Canvas\Canvas;
 
+/**
+ * The Search Controller
+ *
+ * Manage the search system
+ *
+ * @package Canvas
+ * @version 1.0.0-BETA
+ * @author  TheShark34
+ */
 class SearchController
 {
 
@@ -23,45 +50,47 @@ class SearchController
         $search = $_POST["search"];
         $files = self::listFiles("files");
         $groupResults = array();
-        $artifactsResults = array();
+        $artifactResults = array();
 
-        if($searchType == "groupsOnly")
+        if ($searchType == "groupsOnly")
             $groupsOnly = true;
         else
             $groupsOnly = false;
 
-        if($searchType == "artifactsOnly")
+        if ($searchType == "artifactsOnly")
             $artifactsOnly = true;
         else
             $artifactsOnly = false;
 
-        if(!$artifactsOnly)
+        if (!$artifactsOnly)
             foreach ($files["groups"] as $g)
                 if (strpos($g, $search) !== false || strpos(str_replace(".", " ", $g), $search) !== false)
                     $groupResults[sizeof($groupResults)] = $g;
 
-        if(!$groupsOnly)
+        if (!$groupsOnly)
             foreach ($files["artifacts"] as $a)
                 if (strpos($a, $search) !== false)
-                    $artifactsResults[sizeof($artifactsResults)] = $a;
+                    $artifactResults[sizeof($artifactResults)] = $a;
 
-        return Paladin::view("search-result.twig", array("groups" => $groupResults, "artifacts" => $artifactsResults));
+        $groupTree = Canvas::makeTree(null, $groupResults, null, "%f", true);
+        $artifactTree = Canvas::makeTree(null, $artifactResults, "%f", null, true);
+
+        return Paladin::view("search-result.twig", array("groups" => $groupTree, "artifacts" => $artifactTree));
     }
 
     public function listFiles($folder, $finalFiles = array("groups" => array(), "artifacts" => array()))
     {
-        $files = scandir($folder);
-        $files = array_slice($files, 2);
+        $files = Canvas::listWithoutUnwanted($folder);
 
         foreach ($files as $file)
-            if(!is_dir($folder . "/" . $file))
+            if (!is_dir($folder . "/" . $file))
                 continue;
-            else if (TreeController::is_artifact($folder . "/" . $file))
-                $finalFiles["artifacts"][sizeof($finalFiles["artifacts"])] = substr(str_replace("/", ".", $folder) . "/" . $file, 6);
+            else if (Canvas::is_artifact($folder . "/" . $file))
+                $finalFiles["artifacts"][sizeof($finalFiles["artifacts"])] = $folder . "/" . $file;
             else
             {
-                $finalFiles["groups"][sizeof($finalFiles["groups"])] = substr(str_replace("/", ".", $folder . "/" . $file), 6);
-                $finalFiles = self::listFiles($folder . "/" . $file, $finalFiles);
+                $finalFiles["groups"][sizeof($finalFiles["groups"])] = $folder . "/" . $file;
+                $finalFiles = array_merge($finalFiles, self::listFiles($folder . "/" . $file, $finalFiles));
             }
 
         return $finalFiles;

@@ -20,7 +20,8 @@
  */
 
 // Checking
-if(!is_dir(__DIR__ . '/vendor')) {
+if (!is_dir(__DIR__ . '/vendor'))
+{
     echo "Hey, the vendor folder is missing !";
     die();
 }

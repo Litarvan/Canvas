@@ -29,8 +29,17 @@
     {% if groups|length > 0 %}
         <h1>Groups</h1><br />
 
-        {% for group in groups %}
-            <a href="tree/{{ group }}">{{ group }}</a><br />
+        {% for f in groups %}
+            <div class="entry" onclick="window.location='{{ f.file }}'">
+                {% if f.icon != "" %}
+                    <img class="icon" src="{{ root() ~ f.icon }}" />
+                {% endif %}
+
+                <div class="entry-content {% if f.icon == "" %} no-icon {% endif %}">
+                    <h3>{{ f.name }}</h3>
+                    <p>{{ f.desc }}</p><br />
+                </div>
+            </div>
         {% endfor %}
 
         {% if artifacts|length > 0 %}<br/>{% endif %}
@@ -39,8 +48,17 @@
     {% if artifacts|length > 0 %}
         <h1>Artifacts</h1><br />
 
-        {% for artifact in artifacts %}
-            <a href="tree/{{ artifact }}">{{ artifact }}</a><br />
+        {% for f in artifacts %}
+            <div class="entry" onclick="window.location='{{ f.file }}'">
+                {% if f.icon != "" %}
+                    <img class="icon" src="{{ root() ~ f.icon }}" />
+                {% endif %}
+
+                <div class="entry-content {% if f.icon == "" %} no-icon {% endif %}">
+                    <h3>{{ f.name }}</h3>
+                    <p>{{ f.desc }}</p><br />
+                </div>
+            </div>
         {% endfor %}
     {% endif %}
 {% endblock %}

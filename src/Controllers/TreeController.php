@@ -22,7 +22,7 @@
 namespace Canvas\Controllers;
 
 use Paladin\Paladin;
-use Paladin\Std\StringsUtil;
+use Canvas\Canvas;
 
 /**
  * The Tree Controller
@@ -35,7 +35,6 @@ use Paladin\Std\StringsUtil;
  */
 class TreeController
 {
-
     public function group($groupId = "")
     {
         $folder = "files/" . str_replace(".", "/", $groupId);
@@ -44,64 +43,17 @@ class TreeController
         if (!file_exists($folder) || !is_dir($folder))
             return Paladin::view("error.twig", array("title" => "Can't find this group !", "message" => "You requested an unknown group id (${groupId})", "path" => $path));
 
-        $files = scandir($folder);
-        $files = array_slice($files, 2);
+        $files = Canvas::listWithoutUnwanted($folder);
+        $tree = Canvas::makeTree($folder, $files, "Artifact : " . $groupId . " >> %f", "Group : " . $groupId . ($groupId != "" ? "." : "") . "%f");
+        $groupName = Canvas::getGroupName($groupId);
 
-        $tree = array();
-
-        foreach ($files as $file)
-        {
-            if (!is_dir($folder . "/" . $file) || StringsUtil::startsWith($file, "."))
-                continue;
-
-            $json = $folder . "/" . $file . "/infos.json";
-            if (self::is_artifact($folder . "/" . $file))
-                $file = array("file" => $file, "name" => $file, "desc" => "Artifact : " . $groupId . " >> " . $file, "type" => "artifact");
-            else
-                $file = array("file" => $file, "name" => $file, "desc" => "Group : " . $groupId . ($groupId != "" ? "." : "") . $file, "type" => "group");
-
-            if (file_exists($json))
-            {
-                $json = json_decode(file_get_contents($json));
-                $json = (array)$json;
-
-                $file["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
-                $file["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
-                $file["icon"] = file_exists($folder . "/" . $file["file"] . "/icon.png") ? $folder . "/" . $file["file"] . "/icon.png" : "";
-            }
-            $tree[sizeof($tree)] = $file;
-        }
-
-        $explodedGroup = explode(".", $groupId);
-        $group = array("name" => $explodedGroup[sizeof($explodedGroup) - 1], "desc" => $groupId, "id" => $groupId);
-
+        $group = array("name" => $groupName, "desc" => $groupId, "id" => $groupId, "icon" => Canvas::getIfExists($folder . "/icon.png"));
         $json = $folder . "/infos.json";
-        if(file_exists($json))
-        {
-            $json = json_decode(file_get_contents($json));
-            $json = (array) $json;
 
-            $group["name"] = isset($json["name"]) ? $json["name"] : $file["name"];
-            $group["desc"] = isset($json["desc"]) ? $json["desc"] : $file["desc"];
-            $group["icon"] = file_exists($folder . "/icon.png") ? $folder . "/icon.png" : "";
-        }
+        if (file_exists($json))
+            $group = array_merge($group, Canvas::getInfos($json, $groupName, $groupId));
 
         return Paladin::view("tree.twig", array("files" => $tree, "path" => $path, "group" => $group, "type" => "tree"));
-    }
-
-    public static function is_artifact($file)
-    {
-        $files = scandir($file);
-        foreach ($files as $folder)
-            if (is_dir($file . "/" . $folder))
-            {
-                $artifactFiles = scandir($file . "/" . $folder);
-                foreach ($artifactFiles as $f)
-                    if (StringsUtil::endsWith($file . "/" . $folder . "/" . $f, ".jar"))
-                        return true;
-            }
-
-        return false;
     }
 
     public function artifact($groupId, $artifactId)
@@ -113,27 +65,17 @@ class TreeController
         if (!file_exists($folder) || !is_dir($folder))
             return Paladin::view("error.twig", array("title" => "Can't find this group !", "message" => "You requested an unknown group id (${groupId})", "path" => $path));
 
-        $files = scandir($folder);
-        $files = array_slice($files, 2);
-
+        $files = Canvas::listWithoutUnwanted($folder);
         $versions = array();
-
         $json = $folder . "/infos.json";
-        $infos = array("name" => $artifactId, "desc" => $groupId, "icon" => "");
+        $infos = array("name" => $artifactId, "desc" => $groupId, "icon" => Canvas::getIfExists($folder . "/icon.png"));
 
         if (file_exists($json))
-        {
-            $json = json_decode(file_get_contents($json));
-            $json = (array) $json;
-
-            $infos["name"] = isset($json["name"]) ? $json["name"] : $infos["name"];
-            $infos["desc"] = isset($json["desc"]) ? $json["desc"] : $infos["desc"];
-            $infos["icon"] = file_exists($folder . "/icon.png") ? $folder . "/icon.png" : "";
-        }
+            $infos = array_merge($infos, Canvas::getInfos($json, $infos["name"], $infos["desc"]));
 
         foreach ($files as $file)
         {
-            if(!is_dir($folder . "/" . $file))
+            if (!is_dir($folder . "/" . $file))
                 continue;
 
             $file = array("version" => $file, "desc" => "Artifact : " . $groupId . " >> " . $artifactId . " >>> " . $file);
