@@ -21,3 +21,9 @@ a:hover
 {
     color: black;
 }
+
+h1
+{
+    padding: 25px;
+    margin-bottom: -5px;
+}

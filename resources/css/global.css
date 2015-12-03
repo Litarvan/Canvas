@@ -186,6 +186,8 @@ div.pq-grid .glyphicon {
     padding: 5px;
     display: inline-block;
     margin-top: -50px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .entry-content
@@ -201,7 +203,7 @@ div.pq-grid .glyphicon {
 
 .no-icon
 {
-    margin-left: 80px;
+    margin-left: 100px;
 }
 
 #content

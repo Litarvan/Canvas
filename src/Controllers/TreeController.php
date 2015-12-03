@@ -45,7 +45,7 @@ class TreeController
 
         $files = Canvas::listWithoutUnwanted($folder);
         $tree = Canvas::makeTree($folder, $files, "Artifact : " . $groupId . " >> %f", "Group : " . $groupId . ($groupId != "" ? "." : "") . "%f");
-        $groupName = Canvas::getGroupName($groupId);
+        $groupName = Canvas::getName($groupId);
 
         $group = array("name" => $groupName, "desc" => $groupId, "id" => $groupId, "icon" => Canvas::getIfExists($folder . "/icon.png"));
         $json = $folder . "/infos.json";

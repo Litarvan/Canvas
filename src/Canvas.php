@@ -50,14 +50,13 @@ class Canvas
             if (StringsUtil::startsWith($formattedFile, "files."))
                 $formattedFile = substr($formattedFile, 6);
 
-
             if ($isArtifact)
-                $finalFile = array("file" => $formattedFile, "name" => $formattedFile, "desc" => str_replace("%f", $formattedFile, $artifactDesc), "type" => "artifact");
+                $finalFile = array("file" => $formattedFile, "name" => $formattedFile, "desc" => str_replace("%f", self::formatArtifact($formattedFile), $artifactDesc), "type" => "artifact");
             else
                 $finalFile = array("file" => $formattedFile, "name" => $formattedFile, "desc" => str_replace("%f", $formattedFile, $groupDesc), "type" => "group");
 
             if (file_exists($json))
-                $finalFile = array_merge($finalFile, self::getInfos($json, $formattedFile, $isArtifact ? str_replace("%f", $formattedFile, $artifactDesc) : str_replace("%f", $formattedFile, $groupDesc)));
+                $finalFile = array_merge($finalFile, self::getInfos($json, $formattedFile, $isArtifact ? str_replace("%f", self::formatArtifact($formattedFile), $artifactDesc) : str_replace("%f", $formattedFile, $groupDesc)));
 
             $finalFile["icon"] = self::getIfExists((!$pathInFiles ? ($folder . "/") : "") . $file . "/icon.png");
 
@@ -98,11 +97,11 @@ class Canvas
         return file_exists($path) ? $path : "";
     }
 
-    public static function getGroupName($groupId)
+    public static function getName($id)
     {
-        $explodedGroup = explode(".", $groupId);
+        $exploded = explode(".", $id);
 
-        return $explodedGroup[sizeof($explodedGroup) - 1];
+        return $exploded[sizeof($exploded) - 1];
     }
 
     public static function listWithoutUnwanted($folder)
@@ -111,5 +110,20 @@ class Canvas
         $files = array_slice($files, 2);
 
         return $files;
+    }
+
+    public static function formatArtifact($artifactId)
+    {
+        if(strpos($artifactId, ".") === false)
+            return $artifactId;
+
+        $explodedId = explode(".", $artifactId);
+        $formattedArtifact = "";
+
+        for ($i = 0; $i < sizeof($explodedId) - 1; $i++)
+            $formattedArtifact .= $explodedId[$i] . ($i != sizeof($explodedId) - 2 ? "." : "");
+
+        $formattedArtifact .= " >> " . $explodedId[sizeof($explodedId) - 1];
+        return $formattedArtifact;
     }
 }
