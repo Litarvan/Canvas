@@ -1,0 +1,289 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "133d51db45b770fce5dd68415111fd86",
+    "content-hash": "e6565a85cd29da07de606c9c1cbbed93",
+    "packages": [
+        {
+            "name": "paladin/paladin",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Paladin-FW/Paladin.git",
+                "reference": "cc7138e84ae3127728b626ea8b1a9241da9fc85c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Paladin-FW/Paladin/zipball/cc7138e84ae3127728b626ea8b1a9241da9fc85c",
+                "reference": "cc7138e84ae3127728b626ea8b1a9241da9fc85c",
+                "shasum": ""
+            },
+            "require": {
+                "paladin/routing": ">=1.0.0",
+                "php": ">=5.0.0"
+            },
+            "suggest": {
+                "paladin/std-library": ">=1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paladin\\": "src/Paladin/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3"
+            ],
+            "authors": [
+                {
+                    "name": "TheShark34",
+                    "email": "adrien1975@live.fr"
+                },
+                {
+                    "name": "Vavaballz",
+                    "email": "vavaballz@gmail.com"
+                }
+            ],
+            "description": "The Paladin Framework core, the main framework component that starts everything",
+            "homepage": "http://github.com/Paladin-FW/Paladin",
+            "keywords": [
+                "Simple",
+                "core",
+                "extensible",
+                "framework",
+                "light",
+                "paladin",
+                "theshark34",
+                "vavaballz"
+            ],
+            "time": "2015-11-17 18:18:16"
+        },
+        {
+            "name": "paladin/paladin-twig",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Paladin-FW/paladin-twig.git",
+                "reference": "ee7a71e7004104dd376b20d387011751452a5ab5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Paladin-FW/paladin-twig/zipball/ee7a71e7004104dd376b20d387011751452a5ab5",
+                "reference": "ee7a71e7004104dd376b20d387011751452a5ab5",
+                "shasum": ""
+            },
+            "require": {
+                "paladin/paladin": ">=1.0.0",
+                "php": ">=5.0.0",
+                "twig/twig": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paladin\\Viewing\\": "src/Paladin/Viewing/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3"
+            ],
+            "authors": [
+                {
+                    "name": "TheShark34",
+                    "email": "adrien1975@live.fr"
+                }
+            ],
+            "description": "The Twig templating engine Paladin implementation",
+            "homepage": "http://github.com/Paladin-FW/Paladin",
+            "keywords": [
+                "Simple",
+                "engine",
+                "extensible",
+                "framework",
+                "implementation",
+                "light",
+                "paladin",
+                "theshark34",
+                "twig",
+                "vavaballz",
+                "view",
+                "viewing"
+            ],
+            "time": "2015-11-17 18:16:27"
+        },
+        {
+            "name": "paladin/routing",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Paladin-FW/routing.git",
+                "reference": "b67ec07c4c32b34ba691bfc76db08c7add4156b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Paladin-FW/routing/zipball/b67ec07c4c32b34ba691bfc76db08c7add4156b8",
+                "reference": "b67ec07c4c32b34ba691bfc76db08c7add4156b8",
+                "shasum": ""
+            },
+            "require": {
+                "paladin/paladin": ">=1.0.0",
+                "php": ">=5.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paladin\\Routing\\": "src/Paladin/Routing/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3"
+            ],
+            "authors": [
+                {
+                    "name": "TheShark34",
+                    "email": "adrien1975@live.fr"
+                },
+                {
+                    "name": "Vavaballz",
+                    "email": "vavaballz@gmail.com"
+                }
+            ],
+            "description": "The Paladin Framework routing system",
+            "homepage": "http://github.com/Paladin-FW/routing",
+            "keywords": [
+                "Simple",
+                "extensible",
+                "framework",
+                "light",
+                "paladin",
+                "routing",
+                "theshark34",
+                "vavaballz"
+            ],
+            "time": "2015-11-17 18:17:37"
+        },
+        {
+            "name": "paladin/std-library",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Paladin-FW/std-library.git",
+                "reference": "e5ec2946f67f3aa177cff8aaafcd5805584c246f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Paladin-FW/std-library/zipball/3fbebbc16ef4908313ee429a15d6c7cf0ee2f1d3",
+                "reference": "e5ec2946f67f3aa177cff8aaafcd5805584c246f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paladin\\Std\\": "src/Paladin/Std/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3"
+            ],
+            "authors": [
+                {
+                    "name": "TheShark34",
+                    "email": "adrien1975@live.fr"
+                }
+            ],
+            "description": "The Paladin Framework standard library - Contains some usefull methods and classes",
+            "homepage": "http://github.com/Paladin-FW/std-library",
+            "keywords": [
+                "Simple",
+                "extensible",
+                "framework",
+                "library",
+                "light",
+                "paladin",
+                "standard",
+                "std",
+                "theshark34",
+                "vavaballz"
+            ],
+            "time": "2015-11-15 15:12:30"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.23.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.23-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2015-11-05 12:49:06"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

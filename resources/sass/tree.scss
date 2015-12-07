@@ -17,24 +17,17 @@
  * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.files-group
-{
+.files-group a:hover {
+  color: black;
 }
 
-.files-group a:hover
-{
-    color: black;
+#infos {
+  display: inline-block;
+  padding: 25px;
 }
 
-#infos
-{
-    display: inline-block;
-    padding: 25px;
-}
-
-.type
-{
-    float: right;
-    font-size: 60px;
-    margin-right: 25px;
+.type {
+  float: right;
+  font-size: 60px;
+  margin-right: 25px;
 }

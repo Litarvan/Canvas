@@ -1,13 +1,10 @@
 .idea/
 
-cache/
-
-vendor/
-
+build/
 *.iml
 
 *.ipr
 
 *.iws
-files/
-composer.lock
+.sass-cache/
+node_modules/

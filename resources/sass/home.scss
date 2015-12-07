@@ -17,34 +17,27 @@
  * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.home-block p
-{
+.home-block p {}
 
+#visits, #users {
+  width: 100%;
+  height: 250px;
+  background: rgb(0, 164, 63);
+  color: white;
+
+  h4 {
+      padding: 15px;
+      font-size: 22px;
+      font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 }
 
-#visits, #users
-{
-    width: 100%;
-    height: 250px;
-    background: rgb(0, 164, 63);
-    color: white;
+#visits {
+  margin-bottom: 1px;
 }
 
-#visits h4, #users h4
-{
-    padding: 15px;
-    font-size: 22px;
-    font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-#visits
-{
-    margin-bottom: 1px;
-}
-
-#visits-chart
-{
-    width: calc(100% - 50px);
-    padding: 25px;
-    height: 200px;
+#visits-chart {
+  width: calc(100% - 50px);
+  padding: 25px;
+  height: 200px;
 }

@@ -4,7 +4,7 @@
     "description": "The Canvas Maven repository server",
     "keywords": ["canvas", "paladin", "theshark34", "maven", "repository", "server"],
     "homepage": "http://github.com/TheShark34/Canvas",
-    "license": "LGPL-3",
+    "license": "GPL-3",
     "authors": [
         {
             "name": "TheShark34",
