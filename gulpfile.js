@@ -17,13 +17,6 @@
  * along with Canvas.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Shark's GULP build script v1.0
- *
- * Copyright (c) 2015 Adrien Navratil
- * Under the GPL-3 license, see <http://www.gnu.org/licenses/>.
- */
-
  /**
   * Kolakoski suite generation program (Math en Jean ???)
   * Made for educational purpose (for Lycée Jean Cocteau 2015-2016)
@@ -61,6 +54,7 @@ const MINIMIZED_CSS_FOLDER = MINIMIZED_FOLDER + '/css';
 const MINIMIZED_IMAGES_FOLDER = MINIMIZED_FOLDER + '/images';
 
 const TEST_RESOURCES_FOLDER = TEST_FOLDER + '/resources';
+const TEST_IMAGES_FOLDER = TEST_RESOURCES_FOLDER + '/images';
 const TEST_JS_FOLDER = TEST_RESOURCES_FOLDER + '/js';
 const TEST_CSS_FOLDER = TEST_RESOURCES_FOLDER + '/css';
 const TEST_SOURCE_FOLDER = TEST_FOLDER + '/src';
@@ -73,7 +67,7 @@ const DIST_VIEWS_FOLDER = DIST_FOLDER + '/views';
 const COFFEE_SETTINGS = { bare: true };
 const COMPASS_SETTINGS = { css: COMPILED_SASS_FOLDER, sass: 'resources/sass', image: IMAGES_FOLDER };
 
-const ARCHIVE_NAME = 'canvas-1.0.0-BETA.zip';
+const ARCHIVE_NAME = PROJECT_NAME + '-1.0.0-BETA.zip';
 
 // Modules & Hello
 
@@ -153,10 +147,16 @@ gulp.task('minimize-images', function()
 
 // Test tasks
 
-gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass'], function()
+gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-views', 'test-images'], function()
 {
     return gulp.src(makePath(BUILD_BASE))
         .pipe(gulp.dest(TEST_FOLDER));
+});
+
+gulp.task('test-images', function()
+{
+    return gulp.src(IMAGES_FOLDER + '/**/*.png')
+        .pipe(gulp.dest(TEST_IMAGES_FOLDER));
 });
 
 gulp.task('test-php', function()
@@ -177,7 +177,7 @@ gulp.task('test-sass', ['compile-sass'], function()
         .pipe(gulp.dest(TEST_CSS_FOLDER));
 });
 
-gulp.task('test-views', ['compile-views'], function()
+gulp.task('test-views', function()
 {
     return gulp.src(VIEWS_FOLDER + '/**/*')
         .pipe(gulp.dest(TEST_VIEWS_FOLDER));
