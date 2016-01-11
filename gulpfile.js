@@ -66,7 +66,7 @@ const DIST_VIEWS_FOLDER = DIST_FOLDER + '/views';
 const COFFEE_SETTINGS = { bare: true };
 const COMPASS_SETTINGS = { css: COMPILED_SASS_FOLDER, sass: 'resources/sass', image: IMAGES_FOLDER };
 
-const ARCHIVE_NAME = 'canvas-1.0.0-BETA.zip';
+const ARCHIVE_NAME = PROJECT_NAME + '-1.0.0-BETA.zip';
 
 // Modules & Hello
 
@@ -146,10 +146,20 @@ gulp.task('minimize-images', function()
 
 // Test tasks
 
+<<<<<<< HEAD
 gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-images'], function()
+=======
+gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-views', 'test-images'], function()
+>>>>>>> 25608709ab2d6f5bfceee4cdbd867cceb5a4b9f5
 {
     return gulp.src(makePath(BUILD_BASE))
         .pipe(gulp.dest(TEST_FOLDER));
+});
+
+gulp.task('test-images', function()
+{
+    return gulp.src(IMAGES_FOLDER + '/**/*.png')
+        .pipe(gulp.dest(TEST_IMAGES_FOLDER));
 });
 
 gulp.task('test-php', function()
