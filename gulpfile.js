@@ -24,18 +24,10 @@
  * Under the GPL-3 license, see <http://www.gnu.org/licenses/>.
  */
 
- /**
-  * Kolakoski suite generation program (Math en Jean ???)
-  * Made for educational purpose (for Lycée Jean Cocteau 2015-2016)
-  *
-  * Copyright (c) 2015 Lyes Belhadj
-  * Under the MACHIN license, see <http://lienverslalicense/>.
-  */
-
 // Settings
 
 const PROJECT_NAME = "Canvas";
-const PROJECT_VERSION = "1.0.0-BETA";
+const PROJECT_VERSION = "1.0.0-BETA (By Litarvan)";
 const PROJECT_DESC = "The lightweight and simple Maven repository manager";
 const PROJECT_CR = "Copyright (c) 2015 Adrien Navratil";
 
@@ -61,6 +53,7 @@ const MINIMIZED_CSS_FOLDER = MINIMIZED_FOLDER + '/css';
 const MINIMIZED_IMAGES_FOLDER = MINIMIZED_FOLDER + '/images';
 
 const TEST_RESOURCES_FOLDER = TEST_FOLDER + '/resources';
+const TEST_IMAGES_FOLDER = TEST_RESOURCES_FOLDER + '/images';
 const TEST_JS_FOLDER = TEST_RESOURCES_FOLDER + '/js';
 const TEST_CSS_FOLDER = TEST_RESOURCES_FOLDER + '/css';
 const TEST_SOURCE_FOLDER = TEST_FOLDER + '/src';
@@ -153,7 +146,7 @@ gulp.task('minimize-images', function()
 
 // Test tasks
 
-gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass'], function()
+gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-images'], function()
 {
     return gulp.src(makePath(BUILD_BASE))
         .pipe(gulp.dest(TEST_FOLDER));
@@ -177,14 +170,21 @@ gulp.task('test-sass', ['compile-sass'], function()
         .pipe(gulp.dest(TEST_CSS_FOLDER));
 });
 
-gulp.task('test-views', ['compile-views'], function()
+gulp.task('test-views', function()
 {
     return gulp.src(VIEWS_FOLDER + '/**/*')
         .pipe(gulp.dest(TEST_VIEWS_FOLDER));
 });
 
+gulp.task('test-images', function()
+{
+    return gulp.src(IMAGES_FOLDER + '/**/*.png')
+        .pipe(gulp.dest(TEST_IMAGES_FOLDER));
+});
+
 gulp.task('watch', ['test'], function()
 {
+    gulp.watch(IMAGES_FOLDER + '/**/*.png', ['test-images'])
     gulp.watch(COFFEE_FOLDER + '/**/*.coffee', ['test-coffee']);
     gulp.watch(SASS_FOLDER + '/**/*.scss', ['test-sass']);
     gulp.watch(SOURCES_FOLDER + '/**/*.php', ['test-php']);

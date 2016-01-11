@@ -1,0 +1,34 @@
+/*
+ * Copyright 2015 Adrien Navratil
+ *
+ * This file is part of Papersheet.
+ *
+ * Papersheet is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Papersheet is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Papersheet.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Papersheet 1.0.0-BETA
+ *
+ * The stylesheet for lazy people
+ */
+
+@import "papersheet/shortcuts/border-shortcuts";
+@import "papersheet/shortcuts/color-shortcuts";
+@import "papersheet/shortcuts/font-shortcuts";
+@import "papersheet/shortcuts/font-size-shortcuts";
+@import "papersheet/shortcuts/margin-shortcuts";
+@import "papersheet/shortcuts/shortcuts";
+@import "papersheet/shortcuts/text-shortcuts";
+@import "papersheet/shortcuts/z-shortcuts";
+@import "papersheet/util";

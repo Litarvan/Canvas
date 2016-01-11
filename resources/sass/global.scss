@@ -19,14 +19,10 @@
 
 html {
   height: 100%;
-  box-sizing: border-box;
 }
 
-* {
-  box-sizing: inherit;
-  &:before, &:after {
-    box-sizing: inherit;
-  }
+a:hover {
+  color: black;
 }
 
 body {
@@ -121,12 +117,15 @@ nav {
   position: absolute;
   top: 90px;
   right: 50px;
+
   li {
     display: inline-block;
     margin-left: 20px;
   }
+
   a {
     color: white;
+
     &:hover {
       color: white;
     }

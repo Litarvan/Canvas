@@ -1,0 +1,67 @@
+//
+// Copyright 2015 Adrien Navratil
+//
+// This file is part of Papersheet.
+//
+// Papersheet is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Papersheet is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with Papersheet.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+$PAPERSHEET_VERSION: "1.0.0-BETA";
+
+
+// Fonts
+
+$FONT_SIZE_SMALL: 15px;
+$FONT_SIZE_MEDIUM: 22px;
+$FONT_SIZE_LARGE: 50px;
+$FONT_SIZE_HUGE: 100px;
+
+
+// Global
+
+$PAPERSHEET_GLOBAL_FONT: Arial, sans-serif;
+$PAPERSHEET_GLOBAL_BG_COLOR: black;
+$PAPERSHEET_GLOBAL_FG_COLOR: rgba(255, 255, 255, 0.1);
+$PAPERSHEET_GLOBAL_FG_COLOR_HOVER: rgba(255, 255, 255, 0.2);
+$PAPERSHEET_GLOBAL_TEXT_COLOR: $PAPERSHEET_GLOBAL_BG_COLOR;
+$PAPERSHEET_GLOBAL_FONT_SIZE: $FONT_SIZE_MEDIUM;
+$PAPERSHEET_GLOBAL_PADDING: 5px;
+$PAPERSHEET_GLOBAL_MARGIN: $PAPERSHEET_GLOBAL_PADDING;
+
+
+// Buttons
+
+$PAPERSHEET_BUTTON_WIDTH: 200px;
+$PAPERSHEET_BUTTON_COLOR: $PAPERSHEET_GLOBAL_FG_COLOR;
+$PAPERSHEET_BUTTON_COLOR_HOVER: $PAPERSHEET_GLOBAL_FG_COLOR_HOVER;
+$PAPERSHEET_BUTTON_TEXT_COLOR: $PAPERSHEET_GLOBAL_TEXT_COLOR;
+$PAPERSHEET_BUTTON_TEXT_COLOR_HOVER: $PAPERSHEET_GLOBAL_TEXT_COLOR;
+$PAPERSHEET_BUTTON_FONT: $PAPERSHEET_GLOBAL_FONT;
+$PAPERSHEET_BUTTON_FONT_SIZE: $PAPERSHEET_GLOBAL_FONT_SIZE;
+
+
+// Shortcuts
+
+$PAPERSHEET_MAX_MARGIN: 25;
+$PAPERSHEET_MARGIN_ORIENTATION: "top" "bottom" "right" "left" "inside" "outside";
+
+$PAPERSHEET_MAX_FONT_SIZE: 100;
+
+$PAPERSHEET_COLORS: aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray darkgreen darkkhaki darkmagenta darkolivegreen darkorange darkorchid darkred darksalmon darkseagreen darkslateblue darkslategray darkturquoise darkviolet deeppink deepskyblue dimgray dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray green greenyellow honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan lightgoldenrodyellow lightgray lightgreen lightpink lightsalmon lightseagreen lightskyblue lightslategray lightsteelblue lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon sandybrown seagreen seashell sienna silver skyblue slateblue slategray snow springgreen steelblue tan teal thistle tomato turquoise violet wheat white whitesmoke yellow yellowgreen;
+
+$PAPERSHEET_MAX_BORDER: 5;
+$PAPERSHEET_BORDER_TYPE: "" "-top" "-bottom" "-left" "-right";
+$PAPERSHEET_BORDER_RADIUS_TYPE: "" "-top-left" "-top-right" "-bottom-left" "-bottom-right";
+
+$PAPERSHEET_MAX_Z: 10;
