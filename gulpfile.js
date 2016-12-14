@@ -146,11 +146,7 @@ gulp.task('minimize-images', function()
 
 // Test tasks
 
-<<<<<<< HEAD
-gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-images'], function()
-=======
 gulp.task('test-prepare', ['test-php', 'test-coffee', 'test-sass', 'test-views', 'test-images'], function()
->>>>>>> 25608709ab2d6f5bfceee4cdbd867cceb5a4b9f5
 {
     return gulp.src(makePath(BUILD_BASE))
         .pipe(gulp.dest(TEST_FOLDER));
